@@ -1,4 +1,77 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:id="@+id/map" tools:context=".MapsActivity"
-    android:name="com.google.android.gms.maps.SupportMapFragment" />
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:background="#7323dd">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="56dp">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="#ffffff"
+            android:id="@+id/textView1"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+        />
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/bus"/>
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/railicon02"/>
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/school01"/>
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/hospital"/>
+
+
+    </RelativeLayout>
+
+<fragment
+android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/map"
+    tools:context=".MapsActivity"
+    android:layout_marginTop="56dp"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    >
+    <RelativeLayout
+    android:id="@+id/rvhorizon"
+    android:layout_marginTop="420dp"
+    android:layout_width="fill_parent"
+    android:layout_height="110dp"
+    android:background ="#88676767"
+    >
+       <land.housingland.com.housingland.HorizontalListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/listview1">
+        </land.housingland.com.housingland.HorizontalListView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rvhorizon2"
+        android:layout_marginTop="420dp"
+        android:layout_width="fill_parent"
+        android:layout_height="110dp"
+        android:background ="#88676767"
+
+        >
+        <land.housingland.com.housingland.HorizontalListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/listview2">
+        </land.housingland.com.housingland.HorizontalListView>
+    </RelativeLayout>
+</fragment>
+</RelativeLayout>

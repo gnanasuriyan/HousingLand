@@ -1,8 +1,14 @@
 package land.housingland.com.housingland;
+
 import android.app.Activity;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -13,6 +19,10 @@ import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class Login extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -26,6 +36,10 @@ public class Login extends Activity implements
     private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
     Location mCurrentLocation;
     double currentLatitude,currentLongtitude;
+    Geocoder geocoder;
+    List<Address> addresses;
+
+    EditText editText;
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(INTERVAL);
@@ -42,6 +56,8 @@ public class Login extends Activity implements
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
+        geocoder = new Geocoder(this, Locale.getDefault());
+        editText=(EditText)findViewById(R.id.editText);
     }
     @Override
     public void onStart() {
@@ -100,6 +116,13 @@ public class Login extends Activity implements
         if (null != mCurrentLocation) {
             currentLatitude = mCurrentLocation.getLatitude();
             currentLongtitude = mCurrentLocation.getLongitude();
+            try {
+                addresses = geocoder.getFromLocation(currentLatitude,currentLongtitude, 1);
+                String address = addresses.get(0).getAddressLine(0);
+                editText.setText(address);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     @Override
@@ -115,5 +138,11 @@ public class Login extends Activity implements
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
+    }
+
+    public void moveToMapPage(View view) {
+        Intent mapsIntent = new Intent(this, MapsActivity.class);
+        mapsIntent.putExtra("Location", editText.getText().toString());
+        startActivity(mapsIntent);
     }
 }
