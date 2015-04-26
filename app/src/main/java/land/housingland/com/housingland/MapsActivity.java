@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,6 +59,8 @@ public class MapsActivity extends FragmentActivity implements
     double latitude;
     double longtitude;
     ListView listview1;
+    double latfind;
+    double langfind;
 
     // ArrayList<Contact> imageArry = new ArrayList<Contact>();
     ListImageAdapter imageAdapter;
@@ -75,12 +78,15 @@ public class MapsActivity extends FragmentActivity implements
     Bitmap resized;
     private LatLng ASD;
     Location mCurrentLocation;
-    Marker mark;
+    Marker mark,mark1,mark2;
     CameraUpdate update;
     ImageView listImage, normal, satellite, hybird, terrain, bino, binoclose, close, closeinfo, info, up, down;
     TextView textView;
     Geocoder geocoder;
     List<Address> addresses;
+    ImageView school,bus,train,hospital;
+
+
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -88,20 +94,280 @@ public class MapsActivity extends FragmentActivity implements
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
-
+    double lat[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
+        school= (ImageView) findViewById(R.id.school);
+        bus= (ImageView) findViewById(R.id.bus);
+        train= (ImageView) findViewById(R.id.train);
+        hospital= (ImageView) findViewById(R.id.hospital);
+        textView= (TextView) findViewById(R.id.textView1);
+        final double lat[] = new double[]{12.971893,13.021989,13.013794,12.936176,12.977999,12.919780};
+        final double lng[] = new double[]{ 77.581994, 77.600362, 77.549207, 77.610661, 77.701299, 77.670743};
+        String names[] = new String[]{"Rs.30Lacs",  "Rs.23Lacs",  "Rs.40Lacs",  "Rs.1Cr",  "4Lacs","17Lacs"};
+        final double latSchool[]=new double[]{12.972787,12.973864,12.970382,12.971893,12.971843};
+        final double lngSchool[]=new double[]{77.581994,77.582627,77.581093,77.581994,77.581994};
+        final double latbus[]=new double[]{12.972782,12.973867,12.970344,12.971874,12.971845};
+        final double lngbus[]=new double[]{77.531984,77.572647,77.581083,77.541954,77.501984};
+        final double lathos[]=new double[]{12.970500,12.9720700,12.971344,12.9710850,12.971245};
+        final double lnghos[]=new double[]{77.582484,77.582647,77.586083,77.582754,77.582584};
+        final double latSchool1[]=new double[]{13.022670177,13.0244050,13.022315,13.021646,13.024552};
+        final double lngSchool1[]=new double[]{77.0602926,77.600620,599139,602991,77.603559};
+        final double latbus1[]=new double[]{13.023371,13.022367,13.022543,13.022042,13.020653};
+        final double lngbus1[]=new double[]{77.600738,77.600856,77.601886,77.599590,77.599450};
+        final double latschool2[]=new double[]{13.014578,13.013031};
+        final double lngschool2[]=new double[]{77.50661,77.552120};
+        final double latbus2[]=new double[]{13.016637,13.013281,13.012550};
+        final double lngbus2[]=new double[]{77.552807,77.544384,77.552259};
+        final double latschool3[]=new double[]{12.935833,12.933664,12.935237,12.934202};
+        final double lngschool3[]=new double[]{77.610437,77.611703,77.613205,77.614170};
+        final double latbus3[]=new double[]{12.935833,12.933664,12.934202};
+        final double lngbus3[]=new double[]{77.610437,77.611703,77.614170};
+        final double latschool4[]=new double[]{12.978649,12.977687,12.975269,12981576};
+        final double lngschool4[]=new double[]{77.703509,77.697114,77.704238,77.696342};
+        final double latbus4[]=new double[]{12.978649,12.975269,12981576};
+        final double lngbus4[]=new double[]{77.703509,77.704238,77.696342};
+        final double latschool5[]=new double[]{12.922223,12.924377,12.920654,12.921616};
+        final double lngschool5[]=new double[]{77.669591,77.668733,77.666673,77.673539};
+        final double latbus5[]=new double[]{12.922223,12.924377,12.920654};
+        final double lngbus5[]=new double[]{77.669591,77.668733,77.666673};
+        textView.setText("My Current Location");
+school.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+mMap.clear();
+        for(int i=0;i<lat.length;i++)
+        {
+            mark = mMap.addMarker(new MarkerOptions().position(new LatLng(lat[i], lng[i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.green)));
+        }
+
+        for(int i=0;i<latSchool.length;i++)
+         {
+
+
+
+              mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latSchool[i], lngSchool  [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.school)));
+
+
+
+          }
+        for(int i=0;i<latSchool.length;i++)
+        {
+
+
+
+            mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latSchool1[i], lngSchool1  [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.school)));
+
+
+        }
+
+        for(int i=0;i<latschool2.length;i++)
+        {
+
+
+
+            mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latschool2[i], lngschool2  [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.school)));
+
+
+        }
+        for(int i=0;i<latschool3.length;i++)
+        {
+
+
+
+            mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latschool3[i], lngschool3  [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.school)));
+
+
+        }
+        for(int i=0;i<latschool4.length;i++)
+        {
+
+
+
+            mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latschool4[i], lngschool4 [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.school)));
+
+
+        }
+        for(int i=0;i<latschool5.length;i++)
+        {
+
+
+
+            mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latschool5[i], lngschool5 [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.school)));
+
+
+        }
+    }
+});
+        bus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               mMap.clear();
+                for(int i=0;i<lat.length;i++)
+                {
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(lat[i], lng[i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.green)));
+                }
+
+                for(int i=0;i<latSchool.length;i++)
+
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus[i], lngbus
+                            [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+
+                }
+                for(int i=0;i<latSchool.length;i++)
+
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus1[i], lngbus1
+                            [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+
+                }
+                for(int i=0;i<latbus2.length;i++)
+
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus2[i], lngbus2
+                            [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+
+                }
+                for(int i=0;i<latbus3.length;i++)
+
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus3[i], lngbus3
+                            [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+
+                }
+                for(int i=0;i<latbus4.length;i++)
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus4[i], lngbus4 [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+
+
+                }
+                for(int i=0;i<latbus5.length;i++)
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus5[i], lngbus5 [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+
+
+                }
+            }
+        });
+        train.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                for (int i = 0; i < lat.length; i++) {
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(lat[i], lng[i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.green)));
+                }
+
+
+            }
+        });
+        hospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                for (int i = 0; i < lat.length; i++) {
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(lat[i], lng[i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.green)));
+                }
+
+                for (int i = 0; i < latSchool.length; i++)
+
+                {
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(lathos[i], lnghos
+                            [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.hospital)));
+
+                }
+                for(int i=0;i<latSchool.length;i++)
+
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus1[i], lngbus1
+                            [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.hospital)));
+
+                }
+                for(int i=0;i<latbus2.length;i++)
+
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus2[i], lngbus2
+                            [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.hospital)));
+
+                }
+                for(int i=0;i<latbus3.length;i++)
+
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latbus3[i], lngbus3
+                            [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.hospital)));
+
+                }
+                for(int i=0;i<latschool4.length;i++)
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latschool4[i], lngschool4 [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.hospital)));
+
+
+                }
+                for(int i=0;i<latschool5.length;i++)
+                {
+
+
+
+                    mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latschool5[i], lngschool5 [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.hospital)));
+
+
+                }
+            }
+        });
+             //   for(int i=0;i<latSchool.length;i++)
+               // {
+
+
+
+              //      mark = mMap.addMarker(new MarkerOptions().position(new LatLng(latSchool[i], lngschool
+              //              [i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.school)));
+             //   }
 
 
         // listview1 = (ListView) findViewById(R.id.listview1);
     //    up = (ImageView) findViewById(R.id.up);
       //  down = (ImageView) findViewById(R.id.down);
+        final RelativeLayout highlighter= (RelativeLayout) findViewById(R.id.highlight);
         rvhorizon = (RelativeLayout) findViewById(R.id.rvhorizon);
-        rvhorizon2 = (RelativeLayout) findViewById(R.id.rvhorizon2);
-        rvhorizon2.setVisibility(View.INVISIBLE);
+        highlighter.setVisibility(View.INVISIBLE);
+
+       // rvhorizon2 = (RelativeLayout) findViewById(R.id.rvhorizon2);
+      //  rvhorizon2.setVisibility(View.INVISIBLE);
         //rvhorizon.animate().alpha(0.3f);
 
        // up.setVisibility(View.INVISIBLE);
@@ -133,18 +399,14 @@ public class MapsActivity extends FragmentActivity implements
 //
 //            imageArry.add(con);
 //        }
-        double lat[] = new double[]{12.9719400, 12.960000, 12.950000, 12.940000, 12.930000, 13.00000, 13.02000, 13.02530, 13.06000, 13.07000};
-        double lng[] = new double[]{77.5936900, 77.5836900, 77.5636900, 77.5536900, 77.5336900, 78.0000000, 78.0200000, 78.0250000, 78.06000, 78.07000};
-        String names[] = new String[]{"Adukudi",  "Koramangakla",  "Silk board",  "Place 4",  "Place 5", "Place 6", "Place 7", "Place 8", "Place 9", "Place 10"};
-        for(int i=0; i<10; i++) {
+
+        for(int i=0; i<lat.length; i++) {
             imageArry.add(new LandPlace(names[i], lat[i], lng[i]));
         }
 
         imageAdapter = new ListImageAdapter(this, R.layout.image_list, imageArry);
         listview.setAdapter(imageAdapter);
-        highlightAdapter = new HighlightAdapter(this, R.layout.highlight, imageArry);
-        HorizontalListView listview2 = (HorizontalListView) findViewById(R.id.listview2);
-        listview2.setAdapter(highlightAdapter);
+
 
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -156,36 +418,41 @@ public class MapsActivity extends FragmentActivity implements
                 double latitudezoom = imageArry.get(position).getLatitude();
                 double longtitudezoom = imageArry.get(position).getLongtitude();
 
+                highlighter.setVisibility(View.VISIBLE);
                 for (int i = 0; i < imageAdapter.getCount(); i++) {
                     View item = listview.getChildAt(i);
                     if (item != null) {
                         ImageView imageInsideView = (ImageView) item.findViewById(R.id.imglist);
                         imageInsideView.setAlpha(1.0f);
                         TextView textLabel = (TextView)item.findViewById(R.id.textid);
-                        textLabel.setTextColor(Color.BLACK);
+                        textLabel.setTextColor(Color.WHITE);
+                        try {
+                            double latitudeaddress=imageArry.get(position).getLatitude();
+                            double longitudeADRESS=imageArry.get(position).getLongtitude();
+                            addresses = geocoder.getFromLocation( latitudeaddress,  longitudeADRESS, 1);
+                            String address = addresses.get(0).getAddressLine(0);
+                            textView.setText(address);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 }
                 ImageView imageInsideView = (ImageView) v.findViewById(R.id.imglist);
                 imageInsideView.setAlpha(0.6f);
                 TextView textLabel = (TextView)v.findViewById(R.id.textid);
-                textLabel.setTextColor(Color.RED);
+                textLabel.setTextColor(Color.GREEN);
                 CameraUpdate update1 = CameraUpdateFactory.newLatLngZoom(new LatLng(latitudezoom, longtitudezoom), 15);
                 mMap.animateCamera(update1);
                // rvhorizon.setVisibility(View.INVISIBLE);
                // rvhorizon2.setVisibility(View.VISIBLE);
 
-                try {
-                    addresses = geocoder.getFromLocation( latitudezoom,  longtitudezoom, 1);
-                    String address = addresses.get(0).getAddressLine(0);
-                    textView.setText(imageArry.get(position).getName());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
             }
         });
         for(int i=0;i<lat.length;i++)
         {
-            mark = mMap.addMarker(new MarkerOptions().position(new LatLng(lat[i], lng[i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.loco)));
+            mark = mMap.addMarker(new MarkerOptions().position(new LatLng(lat[i], lng[i])).icon(BitmapDescriptorFactory.fromResource(R.drawable.green)));
         }
 
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -286,7 +553,8 @@ public class MapsActivity extends FragmentActivity implements
             mMap.setBuildingsEnabled(true);
             mMap.setIndoorEnabled(true);
             mMap.setMyLocationEnabled(true);
-            mMap.setTrafficEnabled(true);
+        mMap.addPolyline(new PolylineOptions().color(0xffffffff));
+           // mMap.setTrafficEnabled(true);
             mMap.setContentDescription(String.valueOf(true));
          //   mMap.addMarker(new MarkerOptions().position(ASD).title(cn.getName()).icon(BitmapDescriptorFactory.fromBitmap(resized)));
         }
@@ -327,13 +595,8 @@ public class MapsActivity extends FragmentActivity implements
                 update = CameraUpdateFactory.newLatLngZoom(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()), 11);
                 mMap.animateCamera(update);
             }
-            try {
-                addresses = geocoder.getFromLocation( latitude,  longtitude, 1);
-                String address = addresses.get(0).getAddressLine(0);
-                textView.setText(address);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+
 
         } else {
             Log.d(TAG, "location is null ...............");

@@ -12,30 +12,39 @@
             android:textColor="#ffffff"
             android:id="@+id/textView1"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="80dp"
             android:gravity="center"
-        />
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/bus"/>
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/railicon02"/>
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/school01"/>
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/hospital"/>
 
+        />
+       <ImageView
+           android:layout_width="32dp"
+           android:layout_height="32dp"
+           android:layout_alignParentLeft="true"
+           android:layout_marginLeft="10dp"
+           android:src="@drawable/navidraw"
+           android:layout_marginTop="15dp"
+           android:layout_marginBottom="10dp"/>
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="70dp"
+            android:src="@drawable/search"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"/>
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/listv"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"/>
 
     </RelativeLayout>
+
 
 <fragment
 android:layout_width="fill_parent"
@@ -46,8 +55,50 @@ android:layout_width="fill_parent"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     >
     <RelativeLayout
+        android:id="@+id/highlight"
+        android:layout_width="fill_parent"
+        android:layout_height="56dp"
+     android:layout_alignParentTop="true"
+        android:background="#ffffff">
+        <ImageView
+            android:id="@+id/school"
+            android:layout_width="32dp"
+            android:layout_height="50dp"
+            android:src="@drawable/school"
+            android:layout_marginLeft="50dp"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/bus"
+            android:layout_width="32dp"
+            android:layout_height="50dp"
+            android:src="@drawable/bus"
+            android:layout_marginLeft="125dp"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/train"
+            android:layout_width="32dp"
+            android:layout_height="50dp"
+            android:src="@drawable/train"
+            android:layout_marginLeft="200dp"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/hospital"
+            android:layout_width="32dp"
+            android:layout_height="50dp"
+            android:src="@drawable/hospital"
+            android:layout_marginLeft="275dp"
+            android:gravity="center"/>
+
+
+        />
+
+    </RelativeLayout>
+    <RelativeLayout
     android:id="@+id/rvhorizon"
-    android:layout_marginTop="420dp"
+    android:layout_alignParentBottom="true"
+      android:layout_marginTop="400dp"
     android:layout_width="fill_parent"
     android:layout_height="110dp"
     android:background ="#88676767"
@@ -59,19 +110,6 @@ android:layout_width="fill_parent"
         </land.housingland.com.housingland.HorizontalListView>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rvhorizon2"
-        android:layout_marginTop="420dp"
-        android:layout_width="fill_parent"
-        android:layout_height="110dp"
-        android:background ="#88676767"
 
-        >
-        <land.housingland.com.housingland.HorizontalListView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/listview2">
-        </land.housingland.com.housingland.HorizontalListView>
-    </RelativeLayout>
 </fragment>
 </RelativeLayout>

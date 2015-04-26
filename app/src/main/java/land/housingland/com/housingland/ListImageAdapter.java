@@ -54,14 +54,12 @@ public class ListImageAdapter extends ArrayAdapter<LandPlace> {
         holder.textIcon.setText(picture._name);
 
 
-//        byte[] outImage=picture._image;
-//        ByteArrayInputStream imageStream;
-//        File imgFile = new File("");
-//        imageStream = new ByteArrayInputStream(imgFile.);
-//        Bitmap theImage = BitmapFactory.decodeStream(imageStream);
-//        resized = Bitmap.createScaledBitmap(theImage, 120, 150, true);
-//
-//        holder.imgIcon.setImageBitmap(resized);
+        //byte[] outImage=picture._image;
+        //ByteArrayInputStream imageStream = new ByteArrayInputStream(outImage);
+        //Bitmap theImage = BitmapFactory.decodeStream(imageStream);
+        //resized = Bitmap.createScaledBitmap(theImage, 120, 150, true);
+
+        //holder.imgIcon.setImageBitmap(resized);
         return row;
 
     }

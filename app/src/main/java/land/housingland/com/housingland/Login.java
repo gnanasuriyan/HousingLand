@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -38,7 +39,7 @@ public class Login extends Activity implements
     double currentLatitude,currentLongtitude;
     Geocoder geocoder;
     List<Address> addresses;
-
+ImageView search;
     EditText editText;
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -51,6 +52,9 @@ public class Login extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginxml);
         createLocationRequest();
+        if (!isGooglePlayServicesAvailable()) {
+            finish();
+        }
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
@@ -58,6 +62,8 @@ public class Login extends Activity implements
                 .build();
         geocoder = new Geocoder(this, Locale.getDefault());
         editText=(EditText)findViewById(R.id.editText);
+        search= (ImageView) findViewById(R.id.search);
+        search.bringToFront();
     }
     @Override
     public void onStart() {
@@ -111,20 +117,21 @@ public class Login extends Activity implements
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
         updateUI();
-    }
-    private void updateUI() {
-        if (null != mCurrentLocation) {
-            currentLatitude = mCurrentLocation.getLatitude();
-            currentLongtitude = mCurrentLocation.getLongitude();
-            try {
-                addresses = geocoder.getFromLocation(currentLatitude,currentLongtitude, 1);
-                String address = addresses.get(0).getAddressLine(0);
-                editText.setText(address);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(), 1);
+            String address = addresses.get(0).getAddressLine(0);
+            editText.setHint(address);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+    private void updateUI() {
+
+            currentLatitude = mCurrentLocation.getLatitude();
+            currentLongtitude = mCurrentLocation.getLongitude();
+
+        }
+
     @Override
     protected void onPause() {
         super.onPause();

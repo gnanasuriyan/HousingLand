@@ -10,8 +10,10 @@ public class LandPlace {
     double _longtitude;
 
 	// Empty constructor
-	public LandPlace() {
-
+	public LandPlace(String name, double v, double v1) {
+            _name=name;
+        _latitude = v;
+        _longtitude = v1;
 	}
 
 	// constructor
@@ -30,12 +32,6 @@ public class LandPlace {
         this._longtitude=longtitude;
 
 	}
-    public LandPlace(String name, double latitude, double longtitude) {
-        this._name = name;
-        this._latitude=latitude;
-        this._longtitude=longtitude;
-
-    }
 	public LandPlace(int keyId) {
 		this._id = keyId;
 
